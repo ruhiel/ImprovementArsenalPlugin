@@ -1,6 +1,8 @@
 # ImprovementArsenalPlugin
 KanColleViewer用の改修工廠装備一覧を表示するプラグインです。
 
+![サンプル](https://github.com/ruhiel/ImprovementArsenalPlugin/blob/master/images/sample.png)
+
 ### インストール
 
 * `ImprovementArsenalPlugin.dll` を KanColleViewer の `Plugins` ディレクトリに放り込んで下さい。
