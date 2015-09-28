@@ -9,6 +9,8 @@ using Grabacr07.KanColleWrapper.Models;
 
 namespace ImprovementArsenalPlugin
 {
+    // 概要:
+    //     改修工廠ViewModel
     public class ImprovementArsenalInfoViewModel : ViewModel
     {
         // 概要:
@@ -47,7 +49,7 @@ namespace ImprovementArsenalPlugin
                     var item = slotItems.Values.Where(x => elem.Key.Equals(x.Name));
                     if (item.Count() != 0)
                     {
-                        list.Add(new ImprovementArsenalInfo { SlotItemInfo = item.First(), Kanmusu = string.Join(",", elem.Select(x => x.Kanmusu)) });
+                        list.Add(new ImprovementArsenalInfo { SlotItemInfo = item.First(), ShipName = string.Join(",", elem.Select(x => x.ShipName)) });
                     }
                     else
                     {

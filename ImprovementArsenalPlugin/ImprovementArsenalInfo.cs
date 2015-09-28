@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 
 namespace ImprovementArsenalPlugin
 {
+    // 概要:
+    //     改修工廠情報
     public class ImprovementArsenalInfo
     {
+        // 概要:
+        //     装備アイテム情報
         public SlotItemInfo SlotItemInfo { get; set; }
-        public string Kanmusu { get; set; }
+        // 概要:
+        //     艦名
+        public string ShipName { get; set; }
     }
 }

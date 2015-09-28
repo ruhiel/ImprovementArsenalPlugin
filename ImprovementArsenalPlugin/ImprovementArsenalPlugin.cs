@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace ImprovementArsenalPlugin
 {
+    // 概要:
+    //     改修工廠プラグイン
     [Export(typeof(IPlugin))]
     [ExportMetadata("Title", "改修工廠プラグイン")]
     [ExportMetadata("Description", "改修対象の装備一覧を表示します。")]

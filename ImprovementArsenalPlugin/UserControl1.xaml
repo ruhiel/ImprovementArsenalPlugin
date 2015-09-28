@@ -31,7 +31,7 @@
 				                <Run Text="{Binding SlotItemInfo.Name, Mode=OneWay}" />
                             </TextBlock>
                             <TextBlock Grid.Column="2" FontSize="20" Margin="10,10,10,10">
-				                <Run Text="{Binding Kanmusu, Mode=OneWay}"/>
+				                <Run Text="{Binding ShipName, Mode=OneWay}"/>
                             </TextBlock>
                         </Grid>
                     </DataTemplate>
@@ -39,6 +39,4 @@
             </ItemsControl>
         </DockPanel>
     </ContentControl>
-    
-    
 </UserControl>
