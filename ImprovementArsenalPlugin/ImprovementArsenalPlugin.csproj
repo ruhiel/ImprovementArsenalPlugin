@@ -137,6 +137,7 @@
     <Compile Include="ImprovementArsenalInfo.cs" />
     <Compile Include="ImprovementArsenalInfoViewModel.cs" />
     <Compile Include="ImprovementArsenalPlugin.cs" />
+    <Compile Include="ImprovementArsenalSummaryInfo.cs" />
     <Compile Include="UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
       <SubType>Code</SubType>

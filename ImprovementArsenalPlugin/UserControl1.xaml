@@ -8,35 +8,51 @@
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance local:ImprovementArsenalInfoViewModel}"
              d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Styles/Colors.xaml" />                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Styles/Controls.xaml" />                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Styles/Controls.Button.xaml" />                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Styles/Controls.CheckBox.xaml" />                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Styles/Controls.Expander.xaml" />                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Styles/Controls.FocusVisualStyle.xaml" />                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Styles/Controls.PasswordBox.xaml" />                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Styles/Controls.RadioButton.xaml" />                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Styles/Controls.Scrollbar.xaml" />                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Styles/Controls.Tooltip.xaml" />                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Styles/Icons.xaml" />                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Themes/Dark.xaml" />                <ResourceDictionary Source="pack://application:,,,/MetroRadiance;component/Themes/Accents/Purple.xaml" />                <ResourceDictionary Source="pack://application:,,,/KanColleViewer.Controls;component/Styles/Colors.xaml" />                <ResourceDictionary Source="pack://application:,,,/KanColleViewer.Controls;component/Styles/Controls.xaml" />                <ResourceDictionary Source="pack://application:,,,/KanColleViewer.Controls;component/Styles/Controls.HorizontalFlatListBox.xaml" />                <ResourceDictionary Source="pack://application:,,,/KanColleViewer.Controls;component/Styles/Controls.ListView.xaml" />                <ResourceDictionary Source="pack://application:,,,/KanColleViewer.Controls;component/Styles/Controls.PinButton.xaml" />                <ResourceDictionary Source="pack://application:,,,/KanColleViewer.Controls;component/Styles/Controls.TabControl.xaml" />                <ResourceDictionary Source="pack://application:,,,/KanColleViewer.Controls;component/Styles/Controls.Text.xaml" />            </ResourceDictionary.MergedDictionaries>        </ResourceDictionary>    </UserControl.Resources>
     <ContentControl Margin="8,4,0,0">
         <DockPanel>
-            <ItemsControl DockPanel.Dock="Top" ItemsSource="{Binding InfoList}" HorizontalContentAlignment="Stretch" Grid.IsSharedSizeScope="True" Width="auto">
-                <ItemsControl.Template>
-                    <ControlTemplate TargetType="{x:Type ItemsControl}">
-                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Auto">
-                            <StackPanel IsItemsHost="True" Margin="4" />
-                        </ScrollViewer>
-                    </ControlTemplate>
-                </ItemsControl.Template>
-                <ItemsControl.ItemTemplate>
+            <TabControl Style="{DynamicResource VerticalTabControlStyleKey}" DockPanel.Dock="Top" ItemsSource="{Binding InfoList}" HorizontalContentAlignment="Stretch" Grid.IsSharedSizeScope="True" Width="auto">
+                <TabControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-                            <kcvc:SlotItemIcon Grid.Column="0" Type="{Binding SlotItemInfo.IconType}" Width="20" Height="20" />
-                            <TextBlock Grid.Column="1" FontSize="20" Margin="10,10,10,10">
-				                <Run Text="{Binding SlotItemInfo.Name, Mode=OneWay}" />
-                            </TextBlock>
-                            <TextBlock Grid.Column="2" FontSize="20" Margin="10,10,10,10">
-				                <Run Text="{Binding ShipName, Mode=OneWay}"/>
-                            </TextBlock>
-                        </Grid>
+                        <TextBlock Text="{Binding EquipType}"/>
                     </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                </TabControl.ItemTemplate>
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <ItemsControl DockPanel.Dock="Top" ItemsSource="{Binding IAInfoList}" HorizontalContentAlignment="Stretch" Grid.IsSharedSizeScope="True" Width="auto">
+                            <ItemsControl.Template>
+                                <ControlTemplate TargetType="{x:Type ItemsControl}">
+                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" VerticalScrollBarVisibility="Auto">
+                                        <StackPanel IsItemsHost="True" Margin="4" />
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </ItemsControl.Template>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <kcvc:SlotItemIcon Grid.Column="0" Type="{Binding SlotItemInfo.IconType}" Width="20" Height="20" />
+                                        <TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}" Grid.Column="1" FontSize="20" Margin="10,10,10,10">
+				                <Run Text="{Binding SlotItemInfo.Name, Mode=OneWay}" />
+                                        </TextBlock>
+                                        <TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}" Grid.Column="2" FontSize="20" Margin="10,10,10,10">
+				                <Run Text="{Binding ShipName, Mode=OneWay}"/>
+                                        </TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>
         </DockPanel>
     </ContentControl>
 </UserControl>
