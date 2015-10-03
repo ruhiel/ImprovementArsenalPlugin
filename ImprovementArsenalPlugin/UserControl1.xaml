@@ -63,10 +63,10 @@
                                         </Grid.ColumnDefinitions>
                                         <kcvc:SlotItemIcon Grid.Column="0" Type="{Binding SlotItemInfo.IconType}" Width="20" Height="20" />
                                         <TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}" Grid.Column="1" FontSize="20" Margin="10,10,10,10">
-				                <Run Text="{Binding SlotItemInfo.Name, Mode=OneWay}" />
+				                            <Run Text="{Binding SlotItemInfo.Name, Mode=OneWay}" />
                                         </TextBlock>
-                                        <TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}" Grid.Column="2" FontSize="20" Margin="10,10,10,10">
-				                <Run Text="{Binding ShipName, Mode=OneWay}"/>
+                                        <TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}" Grid.Column="2" FontSize="18" Margin="10,10,10,10">
+				                            <Run Text="{Binding ShipName, Mode=OneWay}"/>
                                         </TextBlock>
                                     </Grid>
                                 </DataTemplate>

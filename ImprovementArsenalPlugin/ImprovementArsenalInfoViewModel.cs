@@ -86,7 +86,13 @@ namespace ImprovementArsenalPlugin
                         // 装備種別
                         var slotiteminfo = item.First();
                         var equiptype = slotiteminfo.EquipType.Id;
-                        var infoList = new ImprovementArsenalInfo { SlotItemInfo = slotiteminfo, ShipName = string.Join(",", elem.Select(x => x.ShipName)) };
+                        var elemchunked = elem.Select(x => x.ShipName).Chunk(3);
+                        var ships = new List<String>();
+                        foreach (var e in elemchunked)
+                        {
+                            ships.Add(string.Join(",", e));
+                        }
+                        var infoList = new ImprovementArsenalInfo { SlotItemInfo = slotiteminfo, ShipName = string.Join(Environment.NewLine, ships) };
                         if (equiptype.Equals(3) || equiptype.Equals(38))
                         {
                             // 大口径主砲
@@ -140,6 +146,26 @@ namespace ImprovementArsenalPlugin
                 return list;
             }
         }
+
         #endregion
+    }
+    public static class Extentions
+    {
+        /// <summary>
+        /// シーケンスを指定されたサイズのチャンクに分割します.
+        /// </summary>
+        public static IEnumerable<IEnumerable<T>> Chunk<T>(this IEnumerable<T> self, int chunkSize)
+        {
+            if (chunkSize <= 0)
+            {
+                throw new ArgumentException("Chunk size must be greater than 0.", "chunkSize");
+            }
+
+            while (self.Any())
+            {
+                yield return self.Take(chunkSize);
+                self = self.Skip(chunkSize);
+            }
+        }
     }
 }
