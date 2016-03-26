@@ -1,11 +1,6 @@
 ﻿using Grabacr07.KanColleViewer.Composition;
 using Grabacr07.KanColleWrapper;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImprovementArsenalPlugin
 {
@@ -14,7 +9,7 @@ namespace ImprovementArsenalPlugin
     [Export(typeof(IPlugin))]
     [ExportMetadata("Title", "改修工廠プラグイン")]
     [ExportMetadata("Description", "改修対象の装備一覧を表示します。")]
-    [ExportMetadata("Version", "1.0.1")]
+    [ExportMetadata("Version", "1.0.2")]
     [ExportMetadata("Author", "@ruhiel_murrue")]
     [ExportMetadata("Guid", "C15A5E17-CE79-4E74-9FBA-B5EC3F019866")]
     [Export(typeof(ITool))]
@@ -26,7 +21,7 @@ namespace ImprovementArsenalPlugin
         // 概要:
         //     [ツール] タブのツール一覧に表示される名前を取得します。
         //
-        public string Name => "ImprovementArsenal";
+        public string Name => "Akashi's Arsenal";
         //
         // 概要:
         //     プラグインの初期化処理を実行します。

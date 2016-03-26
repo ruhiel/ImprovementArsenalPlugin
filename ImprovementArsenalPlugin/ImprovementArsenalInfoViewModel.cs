@@ -40,8 +40,9 @@ namespace ImprovementArsenalPlugin
                     {DayOfWeek.Friday, "金" },
                     {DayOfWeek.Saturday, "土" }
                 };
+                var today = DateTime.Now;
                 // 装備毎にその日の曜日に対応する改修対象リストを検索
-                var seq = IATable.List.Where(x => Array.IndexOf(x.Days, days[DateTime.Now.DayOfWeek]) >= 0).GroupBy(x => x.Equip);
+                var seq = IATable.List.Where(x => Array.IndexOf(x.Days, days[today.DayOfWeek]) >= 0).GroupBy(x => x.Equip);
                 List<ImprovementArsenalSummaryInfo> list = new List<ImprovementArsenalSummaryInfo>();
                 ImprovementArsenalSummaryInfo mainGunListLarge = new ImprovementArsenalSummaryInfo()
                 {
@@ -69,6 +70,11 @@ namespace ImprovementArsenalPlugin
                 ImprovementArsenalSummaryInfo aswList = new ImprovementArsenalSummaryInfo()
                 {
                     EquipType = "ソナー・爆雷",
+                    IAInfoList = new List<ImprovementArsenalInfo>()
+                };
+                ImprovementArsenalSummaryInfo aaList = new ImprovementArsenalSummaryInfo()
+                {
+                    EquipType = "機銃・高射装置",
                     IAInfoList = new List<ImprovementArsenalInfo>()
                 };
                 ImprovementArsenalSummaryInfo etcList = new ImprovementArsenalSummaryInfo()
@@ -123,6 +129,11 @@ namespace ImprovementArsenalPlugin
                             // ソナー・爆雷
                             aswList.IAInfoList.Add(infoList);
                         }
+                        else if(equiptype.Equals(21) || equiptype.Equals(36))
+                        {
+                            // 機銃・高射装置
+                            aaList.IAInfoList.Add(infoList);
+                        }
                         else
                         {
                             // その他
@@ -141,6 +152,7 @@ namespace ImprovementArsenalPlugin
                 list.Add(subGunList);
                 list.Add(raderList);
                 list.Add(aswList);
+                list.Add(aaList);
                 list.Add(etcList);
 
                 return list;
