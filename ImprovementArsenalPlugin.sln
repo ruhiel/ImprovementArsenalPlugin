@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImprovementArsenalPlugin", "ImprovementArsenalPlugin\ImprovementArsenalPlugin.csproj", "{02D9079B-826A-40EA-9085-08A5DC3F800D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IATableGenerator", "IATableGenerator\IATableGenerator.csproj", "{0B116533-F42C-42C8-9B29-094A758DEE2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{02D9079B-826A-40EA-9085-08A5DC3F800D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02D9079B-826A-40EA-9085-08A5DC3F800D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02D9079B-826A-40EA-9085-08A5DC3F800D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B116533-F42C-42C8-9B29-094A758DEE2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B116533-F42C-42C8-9B29-094A758DEE2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B116533-F42C-42C8-9B29-094A758DEE2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B116533-F42C-42C8-9B29-094A758DEE2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,66 @@
+﻿using CsvHelper;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace IATableGenerator
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var wc = new System.Net.WebClient();
+            var path = Path.GetTempFileName();
+            wc.DownloadFile("https://docs.google.com/spreadsheets/d/1mLbhSh-STB1OYTK0mmWJM2Wle_9zJemqV88EpnuOC3w/pub?output=csv", path);
+            wc.Dispose();
+
+            CsvParser parser = new CsvParser(new StreamReader(path, Encoding.UTF8));
+
+            parser.Configuration.HasHeaderRecord = true;  // ヘッダ行は無い
+            parser.Configuration.RegisterClassMap<IAInfoMap>();
+
+            CsvReader reader = new CsvReader(parser);
+            List<IAInfo> list = reader.GetRecords<IAInfo>().ToList();
+            parser.Dispose();
+            reader.Dispose();
+
+            File.Delete(path);
+
+            var filename = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/test.txt";
+
+            //書き込むファイルが既に存在している場合は、上書きする
+            var sw = new StreamWriter(
+                filename,
+                false,
+                Encoding.UTF8);
+
+            foreach (IAInfo record in list)
+            {
+                string value = "new IATable { Equip = \"" + record.装備 + "\", Days = new string[] {";
+                var days = new[] {
+                    new { WeekDay = nameof(record.日), Enable = record.日 },
+                    new { WeekDay = nameof(record.月), Enable = record.月 },
+                    new { WeekDay = nameof(record.火), Enable = record.火 },
+                    new { WeekDay = nameof(record.水), Enable = record.水 },
+                    new { WeekDay = nameof(record.木), Enable = record.木 },
+                    new { WeekDay = nameof(record.金), Enable = record.金 },
+                    new { WeekDay = nameof(record.土), Enable = record.土 },
+                };
+                value += string.Join(",", days.Where(x => "○".Equals(x.Enable)).Select(x => '"' + x.WeekDay + '"'));
+
+                value += "}, ShipName = \"" + record.艦娘 + "\"},";
+
+                sw.WriteLine(value);
+            }
+
+            //閉じる
+            sw.Close();
+
+            Process.Start(filename);
+        }
+    }
+}
