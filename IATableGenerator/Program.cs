@@ -1,11 +1,9 @@
 ﻿using CsvHelper;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace IATableGenerator
 {
@@ -30,7 +28,7 @@ namespace IATableGenerator
 
             File.Delete(path);
 
-            var filename = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/test.txt";
+            var filename = System.IO.Directory.GetCurrentDirectory() + "/IATableList.txt";
 
             //書き込むファイルが既に存在している場合は、上書きする
             var sw = new StreamWriter(
@@ -38,9 +36,15 @@ namespace IATableGenerator
                 false,
                 Encoding.UTF8);
 
+            sw.WriteLine("namespace ImprovementArsenalPlugin");
+            sw.WriteLine("{");
+            sw.WriteLine("    public partial class IATable");
+            sw.WriteLine("    {");
+            sw.WriteLine("        public static IATable[] List = new IATable[] {");
+
             foreach (IAInfo record in list)
             {
-                string value = "new IATable { Equip = \"" + record.装備 + "\", Days = new string[] {";
+                string value = "            new IATable { Equip = \"" + record.装備 + "\", Days = new string[] {";
                 var days = new[] {
                     new { WeekDay = nameof(record.日), Enable = record.日 },
                     new { WeekDay = nameof(record.月), Enable = record.月 },
@@ -56,6 +60,10 @@ namespace IATableGenerator
 
                 sw.WriteLine(value);
             }
+
+            sw.WriteLine("        };");
+            sw.WriteLine("    }");
+            sw.WriteLine("}");
 
             //閉じる
             sw.Close();
