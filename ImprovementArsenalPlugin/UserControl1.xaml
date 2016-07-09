@@ -65,7 +65,7 @@
                                         <TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}" Grid.Column="1" FontSize="16" Margin="5,0,5,5" VerticalAlignment="Center">
 				                            <Run Text="{Binding SlotItemInfo.Name, Mode=OneWay}" />
                                         </TextBlock>
-                                        <TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}" Grid.Column="5" FontSize="15" Margin="0,0,0,5" VerticalAlignment="Bottom">
+                                        <TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}" Grid.Column="2" FontSize="15" Margin="0,0,0,5" VerticalAlignment="Bottom">
 				                            <Run Text="{Binding ShipName, Mode=OneWay}"/>
                                         </TextBlock>
                                     </Grid>
