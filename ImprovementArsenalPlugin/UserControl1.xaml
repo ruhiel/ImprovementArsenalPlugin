@@ -61,11 +61,11 @@
                                             <ColumnDefinition Width="auto"/>
                                             <ColumnDefinition Width="auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <kcvc:SlotItemIcon Grid.Column="0" Type="{Binding SlotItemInfo.IconType}" Width="20" Height="20" VerticalAlignment="Center"/>
-                                        <TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}" Grid.Column="1" FontSize="18" Margin="5" VerticalAlignment="Center">
+                                        <kcvc:SlotItemIcon Grid.Column="0" Type="{Binding SlotItemInfo.IconType}" Width="18" Height="18" VerticalAlignment="Center"/>
+                                        <TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}" Grid.Column="1" FontSize="16" Margin="5,0,5,5" VerticalAlignment="Center">
 				                            <Run Text="{Binding SlotItemInfo.Name, Mode=OneWay}" />
                                         </TextBlock>
-                                        <TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}" Grid.Column="2" FontSize="16" Margin="5" VerticalAlignment="Bottom">
+                                        <TextBlock Foreground="{DynamicResource ActiveForegroundBrushKey}" Grid.Column="5" FontSize="15" Margin="0,0,0,5" VerticalAlignment="Bottom">
 				                            <Run Text="{Binding ShipName, Mode=OneWay}"/>
                                         </TextBlock>
                                     </Grid>

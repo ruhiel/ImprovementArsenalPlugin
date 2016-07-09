@@ -44,44 +44,15 @@ namespace ImprovementArsenalPlugin
                 // 装備毎にその日の曜日に対応する改修対象リストを検索
                 var seq = IATable.List.Where(x => Array.IndexOf(x.Days, days[today.DayOfWeek]) >= 0).GroupBy(x => x.Equip);
                 List<ImprovementArsenalSummaryInfo> list = new List<ImprovementArsenalSummaryInfo>();
-                ImprovementArsenalSummaryInfo mainGunListLarge = new ImprovementArsenalSummaryInfo()
-                {
-                    EquipType = "大口径主砲",
-                    IAInfoList = new List<ImprovementArsenalInfo>()
-                };
-                ImprovementArsenalSummaryInfo mainGunListMedium = new ImprovementArsenalSummaryInfo()
-                {
-                    EquipType = "中口径主砲",
-                    IAInfoList = new List<ImprovementArsenalInfo>()
-                };
-                ImprovementArsenalSummaryInfo mainGunListSmall = new ImprovementArsenalSummaryInfo()
-                {
-                    EquipType = "小口径主砲",
-                    IAInfoList = new List<ImprovementArsenalInfo>()
-                };
-                ImprovementArsenalSummaryInfo subGunList = new ImprovementArsenalSummaryInfo()
-                {
-                    EquipType = "副砲・魚雷", IAInfoList = new List<ImprovementArsenalInfo>()
-                };
-                ImprovementArsenalSummaryInfo raderList = new ImprovementArsenalSummaryInfo
-                {
-                    EquipType = "電探", IAInfoList = new List<ImprovementArsenalInfo>()
-                };
-                ImprovementArsenalSummaryInfo aswList = new ImprovementArsenalSummaryInfo()
-                {
-                    EquipType = "ソナー・爆雷",
-                    IAInfoList = new List<ImprovementArsenalInfo>()
-                };
-                ImprovementArsenalSummaryInfo aaList = new ImprovementArsenalSummaryInfo()
-                {
-                    EquipType = "機銃・高射装置",
-                    IAInfoList = new List<ImprovementArsenalInfo>()
-                };
-                ImprovementArsenalSummaryInfo etcList = new ImprovementArsenalSummaryInfo()
-                {
-                    EquipType = "その他",
-                    IAInfoList = new List<ImprovementArsenalInfo>()
-                };
+                var mainGunListLarge = new ImprovementArsenalSummaryInfo("大口径主砲");
+                var mainGunListMedium = new ImprovementArsenalSummaryInfo("中口径主砲");
+                var mainGunListSmall = new ImprovementArsenalSummaryInfo("小口径主砲");
+                var subGunList = new ImprovementArsenalSummaryInfo("副砲・魚雷");
+                var fighterList = new ImprovementArsenalSummaryInfo("艦戦");
+                var raderList = new ImprovementArsenalSummaryInfo("電探");
+                var aswList = new ImprovementArsenalSummaryInfo("ソナー・爆雷");
+                var aaList = new ImprovementArsenalSummaryInfo("機銃・高射装置");
+                var etcList = new ImprovementArsenalSummaryInfo("その他");
                 foreach (var elem in seq)
                 {
                     
@@ -91,7 +62,7 @@ namespace ImprovementArsenalPlugin
                     {
                         // 装備種別
                         var slotiteminfo = item.First();
-                        var equiptype = slotiteminfo.EquipType.Id;
+                        var type = slotiteminfo.Type;
                         var elemchunked = elem.Select(x => x.ShipName).Chunk(3);
                         var ships = new List<String>();
                         foreach (var e in elemchunked)
@@ -99,45 +70,42 @@ namespace ImprovementArsenalPlugin
                             ships.Add(string.Join(",", e));
                         }
                         var infoList = new ImprovementArsenalInfo { SlotItemInfo = slotiteminfo, ShipName = string.Join(Environment.NewLine, ships) };
-                        if (equiptype.Equals(3) || equiptype.Equals(38))
+                        switch(type)
                         {
-                            // 大口径主砲
-                            mainGunListLarge.IAInfoList.Add(infoList);
-                        }
-                        else if (equiptype.Equals(2))
-                        {
-                            // 中口径主砲
-                            mainGunListMedium.IAInfoList.Add(infoList);
-                        }
-                        else if (equiptype.Equals(1))
-                        {
-                            // 小口径主砲
-                            mainGunListSmall.IAInfoList.Add(infoList);
-                        }
-                        else if (equiptype.Equals(4) || equiptype.Equals(5))
-                        {
-                            // 副砲・魚雷
-                            subGunList.IAInfoList.Add(infoList);
-                        }
-                        else if (equiptype.Equals(12) || equiptype.Equals(13) || equiptype.Equals(93))
-                        {
-                            // 電探
-                            raderList.IAInfoList.Add(infoList);
-                        }
-                        else if (equiptype.Equals(14) || equiptype.Equals(15))
-                        {
-                            // ソナー・爆雷
-                            aswList.IAInfoList.Add(infoList);
-                        }
-                        else if(equiptype.Equals(21) || equiptype.Equals(36))
-                        {
-                            // 機銃・高射装置
-                            aaList.IAInfoList.Add(infoList);
-                        }
-                        else
-                        {
-                            // その他
-                            etcList.IAInfoList.Add(infoList);
+                            case SlotItemType.大口径主砲:
+                            case SlotItemType.大口径主砲_II:
+                                mainGunListLarge.IAInfoList.Add(infoList);
+                                break;
+                            case SlotItemType.中口径主砲:
+                                mainGunListMedium.IAInfoList.Add(infoList);
+                                break;
+                            case SlotItemType.小口径主砲:
+                                mainGunListSmall.IAInfoList.Add(infoList);
+                                break;
+                            case SlotItemType.副砲:
+                            case SlotItemType.魚雷:
+                                subGunList.IAInfoList.Add(infoList);
+                                break;
+                            case SlotItemType.大型電探:
+                            case SlotItemType.大型電探_II:
+                            case SlotItemType.小型電探:
+                                raderList.IAInfoList.Add(infoList);
+                                break;
+                            case SlotItemType.大型ソナー:
+                            case SlotItemType.ソナー:
+                            case SlotItemType.爆雷:
+                                aswList.IAInfoList.Add(infoList);
+                                break;
+                            case SlotItemType.対空機銃:
+                            case SlotItemType.高射装置:
+                                aaList.IAInfoList.Add(infoList);
+                                break;
+                            case SlotItemType.艦上戦闘機:
+                                fighterList.IAInfoList.Add(infoList);
+                                break;
+                            default:
+                                etcList.IAInfoList.Add(infoList);
+                                break;
                         }
                     }
                     else
@@ -150,6 +118,7 @@ namespace ImprovementArsenalPlugin
                 list.Add(mainGunListMedium);
                 list.Add(mainGunListSmall);
                 list.Add(subGunList);
+                list.Add(fighterList);
                 list.Add(raderList);
                 list.Add(aswList);
                 list.Add(aaList);
