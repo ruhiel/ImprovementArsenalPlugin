@@ -49,7 +49,8 @@ namespace ImprovementArsenalPlugin
                 var mainGunListSmall = new ImprovementArsenalSummaryInfo("小口径主砲");
                 var subGunList = new ImprovementArsenalSummaryInfo("副砲・魚雷");
                 var fighterList = new ImprovementArsenalSummaryInfo("艦戦");
-                var raderList = new ImprovementArsenalSummaryInfo("電探");
+				var attackerBomberList = new ImprovementArsenalSummaryInfo("艦攻・艦爆");
+				var raderList = new ImprovementArsenalSummaryInfo("電探");
                 var aswList = new ImprovementArsenalSummaryInfo("ソナー・爆雷");
                 var aaList = new ImprovementArsenalSummaryInfo("機銃・高射装置");
                 var etcList = new ImprovementArsenalSummaryInfo("その他");
@@ -103,6 +104,10 @@ namespace ImprovementArsenalPlugin
                             case SlotItemType.艦上戦闘機:
                                 fighterList.IAInfoList.Add(infoList);
                                 break;
+							case SlotItemType.艦上攻撃機:
+							case SlotItemType.艦上爆撃機:
+								attackerBomberList.IAInfoList.Add(infoList);
+								break;
                             default:
                                 etcList.IAInfoList.Add(infoList);
                                 break;
@@ -119,7 +124,8 @@ namespace ImprovementArsenalPlugin
                 list.Add(mainGunListSmall);
                 list.Add(subGunList);
                 list.Add(fighterList);
-                list.Add(raderList);
+				list.Add(attackerBomberList);
+				list.Add(raderList);
                 list.Add(aswList);
                 list.Add(aaList);
                 list.Add(etcList);
