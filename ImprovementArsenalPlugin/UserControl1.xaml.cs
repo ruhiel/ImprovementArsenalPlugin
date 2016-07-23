@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace ImprovementArsenalPlugin
 {
-    /// <summary>
-    /// UserControl1.xaml の相互作用ロジック
-    /// </summary>
-    public partial class UserControl1 : UserControl
-    {
-        public UserControl1()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// UserControl1.xaml の相互作用ロジック
+	/// </summary>
+	public partial class UserControl1 : UserControl
+	{
+		public UserControl1()
+		{
+			InitializeComponent();
+		}
+	}
 }
