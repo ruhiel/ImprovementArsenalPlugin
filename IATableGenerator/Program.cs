@@ -38,13 +38,13 @@ namespace IATableGenerator
 
 			sw.WriteLine("namespace ImprovementArsenalPlugin");
 			sw.WriteLine("{");
-			sw.WriteLine("    public partial class IATable");
-			sw.WriteLine("    {");
-			sw.WriteLine("        public static IATable[] List = new IATable[] {");
+			sw.WriteLine("\tpublic partial class IATable");
+			sw.WriteLine("\t{");
+			sw.WriteLine("\t\tpublic static IATable[] List = new IATable[] {");
 
 			foreach (IAInfo record in list)
 			{
-				string value = "            new IATable { Equip = \"" + record.装備 + "\", Days = new string[] {";
+				string value = "\t\t\tnew IATable { Equip = \"" + record.装備 + "\", Days = new string[] {";
 				var days = new[] {
 					new { WeekDay = nameof(record.日), Enable = record.日 },
 					new { WeekDay = nameof(record.月), Enable = record.月 },
@@ -61,8 +61,8 @@ namespace IATableGenerator
 				sw.WriteLine(value);
 			}
 
-			sw.WriteLine("        };");
-			sw.WriteLine("    }");
+			sw.WriteLine("\t\t};");
+			sw.WriteLine("\t}");
 			sw.WriteLine("}");
 
 			//閉じる
