@@ -28,6 +28,7 @@
 			new IATable { Equip = "試製35.6cm三連装砲", Days = new string[] {"水","木","金","土"}, ShipName = "扶桑改二"},
 			new IATable { Equip = "試製35.6cm三連装砲", Days = new string[] {"日","木","金","土"}, ShipName = "山城改二"},
 			new IATable { Equip = "38.1cm Mk.I連装砲", Days = new string[] {"日","木","金","土"}, ShipName = "Warspite"},
+			new IATable { Equip = "38.1cm Mk.I/N連装砲改", Days = new string[] {"火","水","木","金"}, ShipName = "Warspite"},
 			new IATable { Equip = "35.6cm連装砲(ダズル迷彩)", Days = new string[] {"日","月","火","水","土"}, ShipName = "榛名改二"},
 			new IATable { Equip = "38cm連装砲", Days = new string[] {"木","金","土"}, ShipName = "Bismarck"},
 			new IATable { Equip = "38cm連装砲改", Days = new string[] {"日","月","火"}, ShipName = "Bismarck"},
