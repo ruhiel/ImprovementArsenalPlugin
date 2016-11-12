@@ -56,22 +56,22 @@ namespace ImprovementArsenalPlugin
 				var etcList = new ImprovementArsenalSummaryInfo("その他");
 				foreach (var elem in seq)
 				{
-					
+
 					// 装備名からSlotItemInfo逆引き
 					var item = slotItems.Values.Where(x => elem.Key.Equals(x.Name));
-					if (item.Count() != 0)
+					if (item.Any())
 					{
 						// 装備種別
 						var slotiteminfo = item.First();
 						var type = slotiteminfo.Type;
 						var elemchunked = elem.Select(x => x.ShipName).Chunk(3);
-						var ships = new List<String>();
+						var ships = new List<string>();
 						foreach (var e in elemchunked)
 						{
 							ships.Add(string.Join(",", e));
 						}
 						var infoList = new ImprovementArsenalInfo { SlotItemInfo = slotiteminfo, ShipName = string.Join(Environment.NewLine, ships) };
-						switch(type)
+						switch (type)
 						{
 							case SlotItemType.大口径主砲:
 							case SlotItemType.大口径主砲_II:
@@ -117,8 +117,9 @@ namespace ImprovementArsenalPlugin
 					{
 						throw new KeyNotFoundException("不明な装備" + elem.Key);
 					}
-					
+
 				}
+
 				list.Add(mainGunListLarge);
 				list.Add(mainGunListMedium);
 				list.Add(mainGunListSmall);
@@ -136,6 +137,7 @@ namespace ImprovementArsenalPlugin
 
 		#endregion
 	}
+
 	public static class Extentions
 	{
 		/// <summary>
