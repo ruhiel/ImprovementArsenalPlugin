@@ -174,6 +174,12 @@
 			new IATable { Equip = "探照灯", Days = new string[] {"月","火","水"}, ShipName = "綾波"},
 			new IATable { Equip = "96式150cm探照灯", Days = new string[] {"日","月","金","土"}, ShipName = "比叡"},
 			new IATable { Equip = "96式150cm探照灯", Days = new string[] {"火","水","木","金"}, ShipName = "霧島"},
+			new IATable { Equip = "増設バルジ(大型艦)", Days = new string[] {"木","金","土"}, ShipName = "長門"},
+			new IATable { Equip = "増設バルジ(大型艦)", Days = new string[] {"水","木","金"}, ShipName = "陸奥"},
+			new IATable { Equip = "増設バルジ(大型艦)", Days = new string[] {"水","木","金"}, ShipName = "大和"},
+			new IATable { Equip = "増設バルジ(大型艦)", Days = new string[] {"木","金","土"}, ShipName = "武蔵"},
+			new IATable { Equip = "艦本新設計 増設バルジ(大型艦)", Days = new string[] {"日","土"}, ShipName = "大和"},
+			new IATable { Equip = "艦本新設計 増設バルジ(大型艦)", Days = new string[] {"日","火"}, ShipName = "武蔵"},
 		};
 	}
 }
