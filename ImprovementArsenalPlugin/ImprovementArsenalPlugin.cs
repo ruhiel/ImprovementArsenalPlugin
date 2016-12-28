@@ -17,7 +17,7 @@ namespace ImprovementArsenalPlugin
 	{
 		// 概要:
 		//     [ツール] タブ内に表示される UI のルート要素を取得します。
-		public object View => new UserControl1 { DataContext = new ImprovementArsenalInfoViewModel(KanColleClient.Current.Master.SlotItems), };
+		public object View => new UserControl1 { DataContext = new ImprovementArsenalInfoViewModel() };
 		// 概要:
 		//     [ツール] タブのツール一覧に表示される名前を取得します。
 		//

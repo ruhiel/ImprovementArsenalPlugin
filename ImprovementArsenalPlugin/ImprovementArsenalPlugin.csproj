@@ -133,9 +133,11 @@
     <Compile Include="Annotations\DarkAttribute.cs" />
     <Compile Include="Annotations\ElementalAttribute.cs" />
     <Compile Include="Annotations\LightAttribute.cs" />
+    <Compile Include="Extentions.cs" />
     <Compile Include="IATable.cs" />
     <Compile Include="IATableList.cs" />
     <Compile Include="ImprovementArsenalInfo.cs" />
+    <Compile Include="ImprovementArsenalInfoModel.cs" />
     <Compile Include="ImprovementArsenalInfoViewModel.cs" />
     <Compile Include="ImprovementArsenalPlugin.cs" />
     <Compile Include="ImprovementArsenalSummaryInfo.cs" />
