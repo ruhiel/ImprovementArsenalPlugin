@@ -86,6 +86,7 @@
 			new IATable { Equip = "F4F-3", Days = new string[] {"金","土"}, ShipName = "Saratoga改"},
 			new IATable { Equip = "F4F-4", Days = new string[] {"月","火"}, ShipName = "Saratoga"},
 			new IATable { Equip = "F4F-4", Days = new string[] {"日","月","火"}, ShipName = "Saratoga改"},
+			new IATable { Equip = "F6F-3", Days = new string[] {"火","水","木"}, ShipName = "Saratoga改"},
 			new IATable { Equip = "零式艦戦62型(爆戦)", Days = new string[] {"日","金","土"}, ShipName = "隼鷹"},
 			new IATable { Equip = "零式艦戦62型(爆戦)", Days = new string[] {"日","月"}, ShipName = "翔鶴"},
 			new IATable { Equip = "零戦62型(爆戦/岩井隊)", Days = new string[] {"火","木"}, ShipName = "瑞鶴"},
@@ -180,6 +181,10 @@
 			new IATable { Equip = "増設バルジ(大型艦)", Days = new string[] {"木","金","土"}, ShipName = "武蔵"},
 			new IATable { Equip = "艦本新設計 増設バルジ(大型艦)", Days = new string[] {"日","土"}, ShipName = "大和"},
 			new IATable { Equip = "艦本新設計 増設バルジ(大型艦)", Days = new string[] {"日","火"}, ShipName = "武蔵"},
+			new IATable { Equip = "強化型艦本式缶", Days = new string[] {"日","月","火","水","木","金","土"}, ShipName = "天津風"},
+			new IATable { Equip = "強化型艦本式缶", Days = new string[] {"火","水"}, ShipName = "島風改"},
+			new IATable { Equip = "新型高温高圧缶", Days = new string[] {"火","水","木"}, ShipName = "天津風改"},
+			new IATable { Equip = "新型高温高圧缶", Days = new string[] {"月","火","金"}, ShipName = "島風改"},
 		};
 	}
 }
