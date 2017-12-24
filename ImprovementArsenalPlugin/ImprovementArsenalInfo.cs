@@ -17,5 +17,8 @@ namespace ImprovementArsenalPlugin
 		// 概要:
 		//     艦名
 		public string ShipName { get; set; }
-	}
+        // 概要:
+        //     必要ネジ数と素材
+        public string Info { get; set; }
+    }
 }

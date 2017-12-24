@@ -16,7 +16,7 @@ namespace ImprovementArsenalPlugin
 		{
 			get
 			{
-				Dictionary<DayOfWeek, string> days = new Dictionary<DayOfWeek, string>
+				var days = new Dictionary<DayOfWeek, string>
 				{
 					{DayOfWeek.Sunday, "日" },
 					{DayOfWeek.Monday, "月" },
@@ -29,16 +29,14 @@ namespace ImprovementArsenalPlugin
 				var today = DateTime.Now;
 				// 装備毎にその日の曜日に対応する改修対象リストを検索
 				var seq = IATable.List.Where(x => Array.IndexOf(x.Days, days[today.DayOfWeek]) >= 0).GroupBy(x => x.Equip);
-				List<ImprovementArsenalSummaryInfo> list = new List<ImprovementArsenalSummaryInfo>();
-				var mainGunListLarge = new ImprovementArsenalSummaryInfo("大口径主砲");
-				var mainGunListMedium = new ImprovementArsenalSummaryInfo("中口径主砲");
-				var mainGunListSmall = new ImprovementArsenalSummaryInfo("小口径主砲");
+				var list = new List<ImprovementArsenalSummaryInfo>();
+				var mainGunList = new ImprovementArsenalSummaryInfo("主砲・弾薬");
 				var subGunList = new ImprovementArsenalSummaryInfo("副砲・魚雷");
-				var fighterList = new ImprovementArsenalSummaryInfo("艦戦");
-				var attackerBomberList = new ImprovementArsenalSummaryInfo("艦攻・艦爆");
-				var raderList = new ImprovementArsenalSummaryInfo("電探");
-				var aswList = new ImprovementArsenalSummaryInfo("ソナー・爆雷");
-				var aaList = new ImprovementArsenalSummaryInfo("機銃・高射装置");
+				var aircraftList = new ImprovementArsenalSummaryInfo("航空機");
+				var aquiferList = new ImprovementArsenalSummaryInfo("水上機");
+				var raderList = new ImprovementArsenalSummaryInfo("電探・ソナー");
+				var aaList = new ImprovementArsenalSummaryInfo("缶・バルジ");
+				var airdefenseList = new ImprovementArsenalSummaryInfo("機銃・高射装置");
 				var etcList = new ImprovementArsenalSummaryInfo("その他");
 				foreach (var elem in seq)
 				{
@@ -51,50 +49,67 @@ namespace ImprovementArsenalPlugin
 						var slotiteminfo = item.First();
 						var type = slotiteminfo.Type;
 						var elemchunked = elem.Select(x => x.ShipName).Chunk(3);
-						var ships = new List<string>();
+                        var info = elem.Select(x => x.Info).First();
+                        var ships = new List<string>();
 						foreach (var e in elemchunked)
 						{
 							ships.Add(string.Join(",", e));
 						}
-						var infoList = new ImprovementArsenalInfo { SlotItemInfo = slotiteminfo, ShipName = string.Join(Environment.NewLine, ships) };
+						var infoList = new ImprovementArsenalInfo { SlotItemInfo = slotiteminfo, ShipName = string.Join(Environment.NewLine, ships), Info = info };
 						switch (type)
 						{
 							case SlotItemType.大口径主砲:
 							case SlotItemType.大口径主砲_II:
-								mainGunListLarge.IAInfoList.Add(infoList);
-								break;
-							case SlotItemType.中口径主砲:
-								mainGunListMedium.IAInfoList.Add(infoList);
-								break;
-							case SlotItemType.小口径主砲:
-								mainGunListSmall.IAInfoList.Add(infoList);
+                            case SlotItemType.対艦強化弾:
+                            case SlotItemType.対空強化弾:
+                            case SlotItemType.中口径主砲:
+                            case SlotItemType.小口径主砲:
+                                mainGunList.IAInfoList.Add(infoList);
 								break;
 							case SlotItemType.副砲:
 							case SlotItemType.魚雷:
-								subGunList.IAInfoList.Add(infoList);
+                            case SlotItemType.潜水艦魚雷:
+                            case SlotItemType.特殊潜航艇:
+                                subGunList.IAInfoList.Add(infoList);
 								break;
-							case SlotItemType.大型電探:
+                            case SlotItemType.艦上戦闘機:
+                            case SlotItemType.艦上攻撃機:
+                            case SlotItemType.艦上爆撃機:
+                            case SlotItemType.艦上偵察機:
+                            case SlotItemType.艦上偵察機_II:
+                            case SlotItemType.対潜哨戒機:
+                            case SlotItemType.陸上攻撃機:
+                            case SlotItemType.局地戦闘機:
+                                aircraftList.IAInfoList.Add(infoList);
+                                break;
+                            case SlotItemType.水上偵察機:
+                            case SlotItemType.水上戦闘機:
+                            case SlotItemType.水上爆撃機:
+                            case SlotItemType.大型飛行艇:
+                            case SlotItemType.オートジャイロ:
+                            case SlotItemType.航空要員:
+                                aquiferList.IAInfoList.Add(infoList);
+                                break;
+                            case SlotItemType.大型電探:
 							case SlotItemType.大型電探_II:
 							case SlotItemType.小型電探:
-								raderList.IAInfoList.Add(infoList);
+                            case SlotItemType.大型ソナー:
+                            case SlotItemType.ソナー:
+                            case SlotItemType.爆雷:
+                            case SlotItemType.水上艦要員:
+                                raderList.IAInfoList.Add(infoList);
 								break;
-							case SlotItemType.大型ソナー:
-							case SlotItemType.ソナー:
-							case SlotItemType.爆雷:
-								aswList.IAInfoList.Add(infoList);
-								break;
-							case SlotItemType.対空機銃:
+                            case SlotItemType.機関部強化:
+                            case SlotItemType.追加装甲:
+                            case SlotItemType.追加装甲_中型:
+                            case SlotItemType.追加装甲_大型:
+                                aaList.IAInfoList.Add(infoList);
+                                break;
+                            case SlotItemType.対空機銃:
 							case SlotItemType.高射装置:
-								aaList.IAInfoList.Add(infoList);
+                                airdefenseList.IAInfoList.Add(infoList);
 								break;
-							case SlotItemType.艦上戦闘機:
-								fighterList.IAInfoList.Add(infoList);
-								break;
-							case SlotItemType.艦上攻撃機:
-							case SlotItemType.艦上爆撃機:
-								attackerBomberList.IAInfoList.Add(infoList);
-								break;
-							default:
+                            default:
 								etcList.IAInfoList.Add(infoList);
 								break;
 						}
@@ -106,16 +121,14 @@ namespace ImprovementArsenalPlugin
 
 				}
 
-				list.Add(mainGunListLarge);
-				list.Add(mainGunListMedium);
-				list.Add(mainGunListSmall);
+				list.Add(mainGunList);
 				list.Add(subGunList);
-				list.Add(fighterList);
-				list.Add(attackerBomberList);
+				list.Add(aircraftList);
+				list.Add(aquiferList);
 				list.Add(raderList);
-				list.Add(aswList);
 				list.Add(aaList);
-				list.Add(etcList);
+                list.Add(airdefenseList);
+                list.Add(etcList);
 
 				return list;
 			}
