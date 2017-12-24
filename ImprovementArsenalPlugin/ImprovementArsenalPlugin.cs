@@ -9,7 +9,7 @@ namespace ImprovementArsenalPlugin
 	[Export(typeof(IPlugin))]
 	[ExportMetadata("Title", "改修工廠プラグイン")]
 	[ExportMetadata("Description", "改修対象の装備一覧を表示します。")]
-	[ExportMetadata("Version", "1.0.12")]
+	[ExportMetadata("Version", "1.0.13")]
 	[ExportMetadata("Author", "@ruhiel_murrue")]
 	[ExportMetadata("Guid", "C15A5E17-CE79-4E74-9FBA-B5EC3F019866")]
 	[Export(typeof(ITool))]
@@ -27,7 +27,6 @@ namespace ImprovementArsenalPlugin
 		//     プラグインの初期化処理を実行します。
 		public void Initialize()
 		{
-			
 		}
 	}
 }
